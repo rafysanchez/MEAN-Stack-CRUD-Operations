@@ -15,6 +15,7 @@ export class EmployeeService {
   constructor(private http: HttpClient) { }
 
   postEmployee(emp: Employee) {
+    emp.name = emp.name.toUpperCase( );
     return this.http.post(this.baseURL, emp);
   }
 

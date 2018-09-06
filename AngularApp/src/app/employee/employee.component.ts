@@ -14,7 +14,7 @@ declare var M: any;
 })
 export class EmployeeComponent implements OnInit {
 
-  constructor(private employeeService: EmployeeService) { }
+  constructor(public employeeService: EmployeeService) { }
 
   ngOnInit() {
     this.resetForm();
@@ -25,23 +25,22 @@ export class EmployeeComponent implements OnInit {
     if (form)
       form.reset();
     this.employeeService.selectedEmployee = {
-      _id: "",
-      name: "",
-      position: "",
-      office: "",
+      _id: '',
+      name: '',
+      position: '',
+      office: '',
       salary: null
     }
   }
 
   onSubmit(form: NgForm) {
-    if (form.value._id == "") {
+    if (form.value._id == '') {
       this.employeeService.postEmployee(form.value).subscribe((res) => {
         this.resetForm(form);
         this.refreshEmployeeList();
         M.toast({ html: 'Saved successfully', classes: 'rounded' });
       });
-    }
-    else {
+    } else {
       this.employeeService.putEmployee(form.value).subscribe((res) => {
         this.resetForm(form);
         this.refreshEmployeeList();
